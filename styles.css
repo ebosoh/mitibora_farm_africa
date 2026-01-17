@@ -308,6 +308,8 @@ img {
     justify-content: center;
     text-align: center;
     color: var(--color-white);
+    padding-bottom: 5rem;
+    /* Ensure content doesn't overlap with next section */
 }
 
 .hero-overlay {

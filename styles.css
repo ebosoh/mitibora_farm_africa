@@ -293,8 +293,10 @@ img {
 /* Hero Section */
 .hero {
     position: relative;
-    height: 90vh;
-    min-height: 600px;
+    min-height: 90vh;
+    /* Changed from fixed height */
+    height: auto;
+    /* Allow expansion */
     background-image: url('hero.png');
     /* Custom generated image */
     background-size: cover;
@@ -956,4 +958,35 @@ img {
 .contact-form button {
     width: 100%;
     margin-top: 10px;
+}
+
+/* Mobile Adjustments for Hero */
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 150px;
+        background-attachment: scroll;
+        /* Better performance on mobile */
+    }
+
+    .hero-stats {
+        margin-top: 0;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-count {
+        font-size: 3rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-cta {
+        gap: 2rem;
+    }
 }

@@ -170,6 +170,16 @@ img {
     color: var(--color-white);
 }
 
+.btn-lime {
+    background-color: #BED701;
+    color: #128C7E;
+}
+
+.btn-lime:hover {
+    background-color: #aebc02;
+    transform: translateY(-2px);
+}
+
 /* Header */
 .header {
     background-color: var(--color-white);
@@ -229,6 +239,48 @@ img {
     background-color: #3d8b40;
 }
 
+.btn-whatsapp {
+    background-color: #25D366;
+    color: white;
+    padding: 10px 24px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    transition: var(--transition-normal);
+    box-shadow: 0 4px 6px rgba(37, 211, 102, 0.2);
+}
+
+.btn-whatsapp:hover {
+    background-color: #128C7E;
+    transform: translateY(-2px);
+    color: white;
+    box-shadow: 0 6px 8px rgba(37, 211, 102, 0.3);
+}
+
+.nav-link.active {
+    color: var(--color-accent);
+    font-weight: 700;
+    position: relative;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-accent);
+}
+
+/* Spacer utility for the distant button */
+.nav-spacer {
+    margin-left: 2rem;
+    /* Add distance from other items */
+}
+
 .mobile-menu-toggle {
     display: none;
     background: none;
@@ -249,7 +301,8 @@ img {
     background-position: center;
     background-attachment: fixed;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    padding-top: 220px;
     justify-content: center;
     text-align: center;
     color: var(--color-white);
@@ -261,13 +314,14 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.3), var(--color-dark-overlay));
+    /* Reduced opacity to make image clearer as per user request */
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(30, 86, 49, 0.4));
 }
 
 .hero-content {
     position: relative;
     z-index: 1;
-    max-width: 800px;
+    max-width: 1000px;
 }
 
 .hero-title {
@@ -284,7 +338,7 @@ img {
 
 .hero-cta {
     display: flex;
-    gap: var(--spacing-md);
+    gap: 15rem;
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -384,47 +438,157 @@ img {
     min-width: 150px;
     text-align: center;
     padding: var(--spacing-md);
-    background: var(--color-white);
+    background: #164024;
+    /* Requested Dark Green */
+    color: #ffffff;
+    /* White text for contrast */
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
+    animation: shuffle 3s ease-in-out infinite;
+    /* Continuous animation */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.flow-item h4 {
+    color: #BED701;
+    /* Lime accent for headings */
+    margin-bottom: var(--spacing-xs);
+}
+
+.flow-item p {
+    color: #dddddd;
 }
 
 .flow-icon {
     font-size: 2.5rem;
-    color: var(--color-primary);
+    color: #ffffff;
+    /* White icon */
     margin-bottom: var(--spacing-sm);
+}
+
+.flow-item:hover {
+    animation-play-state: paused;
+    box-shadow: 0 0 20px #BED701, inset 0 0 10px rgba(190, 215, 1, 0.2);
+    transform: scale(1.02);
+    z-index: 10;
+    border-color: #BED701;
+}
+
+/* "Shuffle" Animation - A gentle floating wobbling motion */
+@keyframes shuffle {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    25% {
+        transform: translateY(-5px) rotate(1deg);
+    }
+
+    50% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    75% {
+        transform: translateY(5px) rotate(-1deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+/* Add random delays for organic "shuffling" feel */
+.flow-item:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.flow-item:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.flow-item:nth-child(3) {
+    animation-delay: 1.2s;
+}
+
+.flow-item:nth-child(4) {
+    animation-delay: 0.8s;
 }
 
 .flow-arrow {
     color: var(--color-accent);
+    /* Keep original or hide? Original code had comments about removing it. Keeping decl just in case. */
     font-size: 1.5rem;
+    display: none;
+    /* Usually removed in prev steps based on comment "Removed arrows..." */
 }
 
 /* The Pilot */
-.pilot-stats {
+/* Impact Stats - Enhanced */
+/* Hero Stats - Sci-Fi Glow */
+.hero-stats {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 4rem;
+    margin-bottom: 3rem;
+    margin-top: -120px;
+    /* Moved halfway up as requested */
     flex-wrap: wrap;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
 }
 
-.stat-item {
+.hero-stat-item {
     text-align: center;
+    animation: pulseGlow 3s infinite alternate;
+}
+
+.glow-text {
+    font-family: 'Courier New', monospace;
+    /* Tech/Sci-Fi font feel */
+    color: #164024;
+    /* User requested Dark Green */
+    font-weight: 800;
+    /* Extra bold for readability */
+    text-shadow:
+        0 0 2px #BED701,
+        /* Tight Lime outline */
+        0 0 5px #BED701,
+        /* Soft Lime glow */
+        0 0 10px #ffffff;
+    /* Outer White lift */
 }
 
 .stat-count {
     display: block;
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--color-primary);
+    font-size: 5rem;
+    /* Increased from 3rem */
+    font-weight: 900;
+    /* Increased from 700 */
+    line-height: 1;
+    margin-bottom: 5px;
 }
 
 .stat-label {
-    font-size: 1rem;
-    color: #666;
+    font-size: 1.5rem;
+    /* Increased from 1rem */
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    opacity: 1;
+}
+
+@keyframes pulseGlow {
+    0% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: scale(1.05);
+        opacity: 1;
+        text-shadow:
+            0 0 5px #BED701,
+            0 0 15px #BED701,
+            0 0 30px #ffffff;
+    }
 }
 
 .kiosk-preview {
@@ -603,6 +767,17 @@ img {
     padding-top: var(--spacing-md);
 }
 
+.techbrain-branding,
+.techbrain-branding a {
+    color: #00f9cc;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.techbrain-branding a:hover {
+    text-decoration: underline;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .header-container {
@@ -654,8 +829,8 @@ img {
 /* About Us Page Specifics */
 .page-hero {
     position: relative;
-    height: 30vh;
-    min-height: 250px;
+    height: 20vh;
+    min-height: 150px;
     background-image: url('hero.png');
     /* Reuse hero image or find another */
     background-size: cover;
@@ -733,6 +908,10 @@ img {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--spacing-lg);
+}
+
+.compact-section {
+    padding: var(--spacing-md) 0;
 }
 
 .contact-info .info-item {

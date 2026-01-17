@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Our Programs - Miti Bora Farm Africa. Innovating for communities and the environment.">
+    <title>Our Programs | Miti Bora Farm Africa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Specific styles for Programs Page Immersion */
+        .programs-hero {
+            height: 70vh;
+            min-height: 500px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('programs_hero.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .programs-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .programs-hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        .program-section {
+            padding: 6rem 0;
+            /* overflow: hidden; Removed to prevent clipping of hover effects */
+        }
+
+        .program-content-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .program-text {
+            flex: 1;
+        }
+
+        .program-image {
+            flex: 1;
+            position: relative;
+            /* Container for the effect, holds the decorative border */
+        }
+
+        .img-frame {
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            /* Frame clips the image */
+            position: relative;
+            z-index: 1;
+            /* Ensure image is above the decorative border */
+        }
+
+        .img-frame img {
+            width: 100%;
+            display: block;
+            /* Remove bottom space */
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .program-image:hover .img-frame img {
+            transform: scale(1.08);
+        }
+
+        .program-image:hover .img-frame img {
+            transform: scale(1.08);
+        }
+
+        /* Alternate Layout */
+        .program-section.alt {
+            background-color: #f9f9f9;
+        }
+
+        .program-section.alt .program-content-wrapper {
+            flex-direction: row-reverse;
+        }
+
+        .program-features {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .program-features li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .program-features i {
+            color: var(--color-primary);
+            margin-right: 1rem;
+            font-size: 1.25rem;
+            background: rgba(46, 125, 50, 0.1);
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .how-it-works {
+            padding: 6rem 0;
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .step-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-card p {
+            color: var(--color-text);
+        }
+
+        .step-card {
+            text-align: center;
+            position: relative;
+        }
+
+        /* Partnership Card Animation */
+        .partner-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        .step-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: rgba(30, 86, 49, 0.1);
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .step-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-icon {
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 960px) {
+            .program-content-wrapper {
+                flex-direction: column !important;
+                gap: 2rem;
+            }
+
+            .programs-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="image.png" alt="Miti Bora Farm Africa Logo" class="logo-img">
+            </a>
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="programs.html" class="nav-link active">Our Programs</a></li>
+                    <li><a href="#impact" class="nav-link">Impact</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-spacer">
+                        <a href="https://wa.me/254721221147" target="_blank" class="btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="programs-hero">
+        <div class="container">
+            <h1>Innovative Programs</h1>
+            <p>Creating win-win solutions for families, the environment, and partners seeking sustainable impact.</p>
+        </div>
+    </section>
+
+    <!-- Intro Text -->
+    <section class="section">
+        <div class="container text-center" style="max-width: 800px;">
+            <h2 class="section-title">Building Resilient Communities</h2>
+            <p class="section-desc">Our work aims to strengthen entire communities through environmental restoration and
+                economic empowerment. We focus on three core aspects: Tree Seedling Production, School Fees Loans, and
+                Community Development.</p>
+        </div>
+    </section>
+
+    <!-- Program 1: Tree Seedling Production -->
+    <section class="program-section alt">
+        <div class="container">
+            <div class="program-content-wrapper">
+                <div class="program-text">
+                    <h2 class="section-title">Tree Seedling Production</h2>
+                    <p>We empower families with the tools to become environmental stewards. By providing seeds,
+                        training, and resources, we enable each participating family to produce between 500 and 1,000
+                        high-quality tree seedlings every season.</p>
+                    <ul class="program-features">
+                        <li><i class="fas fa-leaf"></i> Native species selection for ecosystem health</li>
+                        <li><i class="fas fa-search"></i> Rigorous quality control training</li>
+                        <li><i class="fas fa-user-friends"></i> Ongoing technical support from our agronomists</li>
+                    </ul>
+                </div>
+                <div class="program-image">
+                    <div class="img-frame">
+                        <img src="program_seedlings.png" alt="Close up of hands tending to tree seedlings">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program 2: School Fees Loans -->
+    <section class="program-section">
+        <div class="container">
+            <div class="program-content-wrapper">
+                <div class="program-text">
+                    <h2 class="section-title">School Fees Loans</h2>
+                    <p>Education is the key to breaking the cycle of poverty. We provide interest-free loans to families
+                        specifically for their children's education. The unique twist? These loans are repaid through
+                        the production of tree seedlings, not cash.</p>
+                    <ul class="program-features">
+                        <li><i class="fas fa-graduation-cap"></i> Interest-free education loans</li>
+                        <li><i class="fas fa-hand-holding-heart"></i> Repayment via environmental action</li>
+                        <li><i class="fas fa-book-reader"></i> Comprehensive educational support services</li>
+                    </ul>
+                </div>
+                <div class="program-image">
+                    <div class="img-frame">
+                        <img src="program_education.png" alt="Student showing report card to parents">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program 3: Community Development -->
+    <section class="program-section alt">
+        <div class="container">
+            <div class="program-content-wrapper">
+                <div class="program-text">
+                    <h2 class="section-title">Community Development</h2>
+                    <p>True impact goes beyond the individual. We work to lift entire communities by fostering
+                        collaboration, leadership, and shared environmental responsibility.</p>
+                    <ul class="program-features">
+                        <li><i class="fas fa-users-cog"></i> Community training workshops</li>
+                        <li><i class="fas fa-comments"></i> Participatory engagement sessions</li>
+                        <li><i class="fas fa-chart-line"></i> Local leadership capacity building</li>
+                    </ul>
+                </div>
+                <div class="program-image">
+                    <div class="img-frame">
+                        <img src="program_community.png" alt="Community gathered under a tree for a workshop">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Process -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-md-8 mx-auto">
+
+                    <h2 class="section-title">How It Works</h2>
+                </div>
+            </div>
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <div class="step-icon"><i class="fas fa-file-signature"></i></div>
+                        <h3>Family Enrolment</h3>
+                        <p>Families apply and receive training on seedling production.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <div class="step-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                        <h3>Loan Provision</h3>
+                        <p>School fee loans are provided based on production capacity.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <div class="step-icon"><i class="fas fa-seedling"></i></div>
+                        <h3>Seedling Production</h3>
+                        <p>Families produce quality seedlings with out support.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <div class="step-icon"><i class="fas fa-tree"></i></div>
+                        <h3>Reforestation</h3>
+                        <p>Seedlings are planted, creating lasting environmental impact.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="impact" class="section text-center" style="background-color: var(--color-primary);">
+        <div class="container">
+            <h2 class="section-title" style="color: #ffffff;">Why Choose Our Carbon Offset Program?</h2>
+
+            <p class="section-desc" style="font-size: 1.5rem; font-weight: 700; color: #ffffff; margin-bottom: 3rem;">
+                Making a measurable impact on climate change while gaining brand exposure.
+            </p>
+
+            <div class="partnership-cards"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem; text-align: left;">
+                <!-- Card 1 -->
+                <div class="partner-card">
+                    <div class="icon" style="font-size: 2rem; color: var(--color-primary); margin-bottom: 1rem;"><i
+                            class="fas fa-bullhorn"></i></div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: #333;">Brand
+                        Visibility</h3>
+                    <p style="color: #555;">Showcase your commitment to sustainability and gain recognition as a leader
+                        in environmental stewardship.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="partner-card">
+                    <div class="icon" style="font-size: 2rem; color: var(--color-primary); margin-bottom: 1rem;"><i
+                            class="fas fa-globe-africa"></i></div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: #333;">Tangible
+                        Impact</h3>
+                    <p style="color: #555;">Directly track the number of trees planted and families supported through
+                        our transparent reporting.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="partner-card">
+                    <div class="icon" style="font-size: 2rem; color: var(--color-primary); margin-bottom: 1rem;"><i
+                            class="fas fa-hand-holding-heart"></i></div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: #333;">Community
+                        Uplift</h3>
+                    <p style="color: #555;">Empower rural communities with sustainable income sources and educational
+                        opportunities.</p>
+                </div>
+            </div>
+
+            <a href="contact.html" class="btn btn-secondary btn-lg" style="margin-top: 1rem; border-width: 2px;">Contact
+                Us Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <img src="image.png" alt="Miti Bora Farm Africa" class="footer-logo">
+                <p>Restoring ecosystems, empowering education.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>P.O. Box 10758-00400<br>Nairobi, Kenya</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Proposal PDF</a></li>
+                    <li><a href="#">MEL Framework</a></li>
+                    <li><a href="#">Annual Report</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; <span id="current-year">2026</span> Miti Bora Farm Africa. All rights reserved. FID Acknowledged.
+                | <span class="techbrain-branding">Designed by <a href="https://techbrain.africa"
+                        target="_blank">TechBrain</a></span></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

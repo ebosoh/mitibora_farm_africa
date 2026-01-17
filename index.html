@@ -32,14 +32,16 @@
             </button>
             <nav class="nav">
                 <ul class="nav-list">
-                    <li><a href="#hero" class="nav-link">Home</a></li>
+                    <li><a href="#hero" class="nav-link active">Home</a></li>
                     <li><a href="about.html" class="nav-link">About Us</a></li>
-                    <li><a href="#problem" class="nav-link">The Problem</a></li>
-                    <li><a href="#solution" class="nav-link">Our Solution</a></li>
-                    <li><a href="#pilot" class="nav-link">The Pilot</a></li>
-                    <li><a href="#impact" class="nav-link">Impact</a></li>
-                    <li><a href="#fund" class="nav-link btn-donate">Donate</a></li>
-                    <li><a href="#footer" class="nav-link">Contact</a></li>
+                    <li><a href="programs.html" class="nav-link">Our Programs</a></li>
+                    <li><a href="programs.html#impact" class="nav-link">Impact</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-spacer">
+                        <a href="https://wa.me/254721221147" target="_blank" class="btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -48,13 +50,29 @@
     <!-- Hero Section -->
     <section id="hero" class="hero">
         <div class="hero-overlay"></div>
-        <div class="container hero-content">
+        <div class="hero-content">
+            <div class="hero-stats">
+                <div class="hero-stat-item">
+                    <span class="stat-count glow-text" data-target="50000">0</span>
+                    <span class="stat-label glow-text">Tree Seedlings Planted</span>
+                </div>
+                <div class="hero-stat-item">
+                    <span class="stat-count glow-text" data-target="200">0</span>
+                    <span class="stat-label glow-text">Families Supported</span>
+                </div>
+                <div class="hero-stat-item">
+                    <span class="stat-count glow-text" data-target="15">0</span>
+                    <span class="stat-label glow-text">Our Partners</span>
+                </div>
+            </div>
             <h1 class="hero-title">Mitibora Farm Africa<br>Reforesting Kenya One Family at a Time</h1>
             <p class="hero-subtitle">Empowering poor families to produce tree seedlings in exchange for school fee
                 loans, while helping international organizations offset their carbon footprint at just <strong>1 KES per
                     liter</strong> of fuel.</p>
-            <a href="contact.html" class="btn btn-primary"><i class="fas fa-play-circle"></i> Join Our Mission</a>
-            <a href="#impact" class="btn btn-secondary">Calculate Carbon Offset</a>
+            <div class="hero-cta">
+                <a href="contact.html" class="btn btn-lime"><i class="fas fa-play-circle"></i> Join Our Mission</a>
+                <a href="#fund" class="btn btn-secondary">Calculate Carbon Offset</a>
+            </div>
         </div>
         </div>
     </section>
@@ -69,10 +87,7 @@
                     ensuring their children can access quality education while contributing to environmental
                     restoration.</p>
             </div>
-            <div class="problem-visual text-center mb-4" style="margin-bottom: 2rem;">
-                <img src="problem.png" alt="Child out of school vs deforested landscape"
-                    style="border-radius: var(--radius-lg); box-shadow: var(--shadow-md); max-height: 400px; margin: 0 auto;">
-            </div>
+
             <div class="problem-grid">
                 <div class="problem-card">
                     <div class="problem-icon"><i class="fas fa-seedling"></i></div>
@@ -95,6 +110,8 @@
             </div>
         </div>
     </section>
+
+
 
     <!-- Our Partners & Kiosks -->
     <section id="solution" class="section solution bg-light">
@@ -137,20 +154,34 @@
                 <div class="kiosk-details"
                     style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem; background: white; padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
                     <div class="kiosk-text" style="flex: 1;">
-                        <ul style="list-style: none; space-y: 1rem;">
-                            <li style="margin-bottom: 1rem;"><i class="fas fa-check-circle"
-                                    style="color: var(--color-accent); margin-right: 10px;"></i> <strong>Strategic
-                                    Locations:</strong> Positioned along major highways for maximum visibility.</li>
-                            <li style="margin-bottom: 1rem;"><i class="fas fa-check-circle"
-                                    style="color: var(--color-accent); margin-right: 10px;"></i> <strong>Brand
-                                    Visibility:</strong> Your logo prominently displayed on kiosk structures.</li>
-                            <li style="margin-bottom: 1rem;"><i class="fas fa-check-circle"
-                                    style="color: var(--color-accent); margin-right: 10px;"></i> <strong>Community
-                                    Impact:</strong> Associate your brand with environmental stewardship.</li>
+                        <h4 style="margin-bottom: 1rem; color: var(--color-primary);">Branding Benefits Include:</h4>
+                        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem;">
+                            <li><i class="fas fa-check-circle"
+                                    style="color: var(--color-accent); margin-right: 10px;"></i> Priority invitations to
+                                our events or donor networking sessions</li>
+                            <li><i class="fas fa-check-circle"
+                                    style="color: var(--color-accent); margin-right: 10px;"></i> Logo placement on kiosk
+                                structures</li>
+                            <li><i class="fas fa-check-circle"
+                                    style="color: var(--color-accent); margin-right: 10px;"></i> Branded signage and
+                                displays</li>
+                            <li><i class="fas fa-check-circle"
+                                    style="color: var(--color-accent); margin-right: 10px;"></i> Recognition in
+                                community events</li>
+                            <li><i class="fas fa-check-circle"
+                                    style="color: var(--color-accent); margin-right: 10px;"></i> Social media
+                                acknowledgment</li>
+                            <li><i class="fas fa-check-circle"
+                                    style="color: var(--color-accent); margin-right: 10px;"></i> Providing feedback
+                                reports featuring your brand</li>
+                            <li><i class="fas fa-check-circle"
+                                    style="color: var(--color-accent); margin-right: 10px;"></i> Exclusive territorial
+                                branding rights</li>
                         </ul>
                     </div>
                     <div class="kiosk-image" style="flex: 1;">
-                        <img src="solution.png" alt="Highway Kiosk"
+                        <img src="highway_kiosks_final_1768589736763.png"
+                            alt="Highway Kiosk with Miti Bora Farm Branding and abundant seedlings"
                             style="border-radius: var(--radius-md); width: 100%;">
                     </div>
                 </div>
@@ -159,34 +190,7 @@
         </div>
     </section>
 
-    <!-- Why Choose Our Carbon Offset Program -->
-    <section id="impact" class="section impact bg-dark">
-        <div class="container">
-            <div class="section-header text-center text-white">
-                <h2 class="section-title">Why Choose Our Carbon Offset Program?</h2>
-                <p class="section-desc text-white">Making a measurable impact on climate change while gaining brand
-                    exposure.</p>
-            </div>
-            <div class="impact-dashboard">
-                <div class="dashboard-card">
-                    <h4>Cost Effective</h4>
-                    <p>At just <strong>1 KES per liter</strong>, it's one of the most affordable carbon offset programs
-                        available.</p>
-                </div>
-                <div class="dashboard-card">
-                    <h4>Social Impact</h4>
-                    <p>Your contribution directly supports poor families and children's education in Kenya.</p>
-                </div>
-                <div class="dashboard-card">
-                    <h4>Transparent Tracking</h4>
-                    <p>Track your impact with detailed reports on seedlings planted and families supported.</p>
-                </div>
-            </div>
-            <div class="impact-links text-center">
-                <a href="#footer" class="btn btn-accent">Partner With Us</a>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Carbon Offset Calculator -->
     <section id="fund" class="section fund">
@@ -200,18 +204,18 @@
                 style="background: white; padding: 3rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); max-width: 600px; margin: 0 auto; text-align: center;">
                 <h3 style="margin-bottom: 2rem; color: var(--color-primary);">Enter Your Fuel Consumption</h3>
                 <div class="input-group" style="margin-bottom: 2rem;">
-                    <input type="number" placeholder="Liters of Fuel"
+                    <input type="number" id="fuelInput" placeholder="Liters of Fuel"
                         style="padding: 15px; font-size: 1.2rem; border: 2px solid #eee; border-radius: var(--radius-sm); width: 200px; text-align: center;">
                     <span style="font-size: 1.2rem; font-weight: bold; margin-left: 10px;">Liters</span>
                 </div>
                 <div class="result-preview"
                     style="background: var(--color-light-gray); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 2rem;">
                     <p style="font-size: 1.1rem;">Your Contribution at 1 KES/Liter:</p>
-                    <h2 class="live-stat" style="color: var(--color-accent);">0 KES</h2>
+                    <h2 class="live-stat" id="offsetResult" style="color: var(--color-accent);">0 KES</h2>
                     <p style="font-size: 0.9rem; margin-top: 10px;">Directly supports seedling production & education
                         loans.</p>
                 </div>
-                <a href="#footer" class="btn btn-primary">Offset Now</a>
+                <a href="#" id="offsetBtn" class="btn btn-primary">Offset Now</a>
             </div>
         </div>
     </section>
@@ -250,7 +254,8 @@
         </div>
         <div class="footer-bottom text-center">
             <p>&copy; <span id="current-year">2024</span> Miti Bora Farm Africa. All rights reserved. FID Acknowledged.
-            </p>
+                | <span class="techbrain-branding">Designed by <a href="https://techbrain.africa"
+                        target="_blank">TechBrain</a></span></p>
         </div>
     </footer>
 

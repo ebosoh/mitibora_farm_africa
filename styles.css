@@ -973,6 +973,8 @@ img {
         margin-top: 0;
         gap: 2rem;
         margin-bottom: 2rem;
+        flex-direction: column;
+        /* Stack vertically (one per line) */
     }
 
     .stat-count {

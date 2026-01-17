@@ -831,7 +831,8 @@ img {
 /* About Us Page Specifics */
 .page-hero {
     position: relative;
-    height: 20vh;
+    min-height: 20vh;
+    height: auto;
     min-height: 150px;
     background-image: url('hero.png');
     /* Reuse hero image or find another */
@@ -988,5 +989,67 @@ img {
 
     .hero-cta {
         gap: 2rem;
+    }
+
+    /* Global Mobile Styles */
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .section {
+        padding: 3rem 0;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    /* Grids & Flex Stacking */
+    .problem-grid,
+    .about-grid,
+    .team-grid,
+    .contact-grid,
+    .footer-grid,
+    .newsletter-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .solution-flow {
+        flex-direction: column;
+    }
+
+    .flow-arrow {
+        transform: rotate(90deg);
+        margin: 1rem 0;
+    }
+
+    /* Component Adjustments */
+    .kiosk-details {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .kiosk-image {
+        order: -1;
+        /* Image first on mobile */
+    }
+
+    .calculator-box {
+        padding: 1.5rem;
+    }
+
+    .live-stat {
+        font-size: 2.5rem;
+    }
+
+    .offset-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Footer */
+    .footer-links {
+        text-align: center;
     }
 }

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Accounts | Miti Bora Farm Africa</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+            border-radius: var(--radius-lg);
+            margin-bottom: 2rem;
+        }
+
+        .portal-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+        }
+
+        .auth-box {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header will be updated globally -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><img src="image.png" alt="Logo" class="logo-img"></a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link">Donors & Partners <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="partners.html">Partners Portal</a>
+                            <a href="donors.html">Donors Portal</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link active">Education <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="schools.html">School Accounts</a>
+                            <a href="school_fees.html">Get School Fees</a>
+                        </div>
+                    </li>
+                    <li><a href="get_seedling.html" class="nav-link">Get a Seedling</a></li>
+                    <li><a href="programs.html" class="nav-link">Our Programs</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-spacer">
+                        <a href="https://wa.me/254721221147" target="_blank" class="btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">School Network</h1>
+            <p class="hero-subtitle">Join our network of schools transforming education through environmental
+                stewardship.</p>
+        </div>
+    </div>
+
+    <div class="portal-container">
+
+        <!-- Public Map View -->
+        <h2 class="section-title text-center">Our Partner Schools</h2>
+        <div id="map"></div>
+
+        <!-- Auth Section -->
+        <div id="auth-section" class="auth-box">
+            <h3 class="text-center" style="margin-bottom: 1.5rem;">School Login / Register</h3>
+
+            <div class="tabs" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                <button class="btn btn-outline" onclick="showForm('login')">Login</button>
+                <button class="btn btn-outline" onclick="showForm('register')">Register New School</button>
+            </div>
+
+            <form id="login-form">
+                <div class="form-group"><label>Email</label><input type="email" id="login-email" required></div>
+                <div class="form-group"><label>Password</label><input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+
+            <form id="register-form" style="display:none;">
+                <div class="form-group"><label>School Name</label><input type="text" id="reg-name" required></div>
+                <div class="form-group"><label>Email</label><input type="email" id="reg-email" required></div>
+                <div class="form-group"><label>Password</label><input type="password" id="reg-password" required></div>
+                <div class="form-group"><label>Student Count</label><input type="number" id="reg-count" required></div>
+
+                <h4 style="margin-top: 1rem;">Location Details</h4>
+                <p style="font-size: 0.9rem; color: #666;">Click on the map above to set your location automatically, or
+                    use current location.</p>
+                <button type="button" class="btn btn-sm btn-outline" onclick="getLocation()"
+                    style="margin-bottom: 0.5rem;"><i class="fas fa-location-arrow"></i> Use Current Location</button>
+
+                <div class="form-group" style="display: flex; gap: 1rem;">
+                    <input type="text" id="reg-lat" placeholder="Latitude" readonly required>
+                    <input type="text" id="reg-lng" placeholder="Longitude" readonly required>
+                </div>
+
+                <div class="form-group"><label>Contact Person</label><input type="text" id="reg-contact" required></div>
+
+                <button type="submit" class="btn btn-secondary w-100">Register School</button>
+            </form>
+        </div>
+
+        <!-- Dashboard (School View) -->
+        <div id="dashboard-view" style="display: none;">
+            <h2>School Dashboard</h2>
+            <p>Welcome, <span id="school-name">School</span></p>
+            <!-- Stats -->
+            <div class="stats-grid"
+                style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem;">
+                <div class="stat-card" style="background:#eee; padding: 1rem; border-radius: 8px;">
+                    <h3>0</h3>
+                    <p>Students Supported</p>
+                </div>
+                <div class="stat-card" style="background:#eee; padding: 1rem; border-radius: 8px;">
+                    <h3>0 KES</h3>
+                    <p>Fees Covered</p>
+                </div>
+            </div>
+            <button onclick="Auth.logout()" class="btn btn-danger" style="margin-top: 2rem;">Logout</button>
+        </div>
+
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="GithubAdapter.js"></script>
+    <script src="auth.js"></script>
+
+    <script>
+        let map, marker;
+
+        function initMap() {
+            // Default to Nairobi
+            map = L.map('map').setView([-1.2921, 36.8219], 10);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Fetch existing schools
+            loadSchools();
+
+            // Map Click to Set Location for Registration
+            map.on('click', function (e) {
+                const lat = e.latlng.lat.toFixed(6);
+                const lng = e.latlng.lng.toFixed(6);
+
+                document.getElementById('reg-lat').value = lat;
+                document.getElementById('reg-lng').value = lng;
+
+                if (marker) map.removeLayer(marker);
+                marker = L.marker([lat, lng]).addTo(map)
+                    .bindPopup("Selected Location").openPopup();
+            });
+        }
+
+        async function loadSchools() {
+            const res = await backend.get("getSchools");
+            if (res.status === "success" && res.data) {
+                res.data.forEach(school => {
+                    if (school.Lat && school.Lng) {
+                        L.marker([school.Lat, school.Lng]).addTo(map)
+                            .bindPopup(`<b>${school.Name}</b><br>Students: ${school.StudentCount}`);
+                    }
+                });
+            }
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    document.getElementById('reg-lat').value = lat;
+                    document.getElementById('reg-lng').value = lng;
+                    map.setView([lat, lng], 15);
+                    if (marker) map.removeLayer(marker);
+                    marker = L.marker([lat, lng]).addTo(map).bindPopup("Your Location").openPopup();
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showForm(type) {
+            document.getElementById('login-form').style.display = type === 'login' ? 'block' : 'none';
+            document.getElementById('register-form').style.display = type === 'register' ? 'block' : 'none';
+        }
+
+        // Auth Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            initMap();
+
+            const user = Auth.getUser();
+            if (user && user.role === 'School') {
+                document.getElementById('auth-section').style.display = 'none';
+                document.getElementById('dashboard-view').style.display = 'block';
+                document.getElementById('school-name').innerText = user.email; // Would fetch name in real app
+            }
+
+            // Register
+            document.getElementById('register-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const data = {
+                    action: 'register',
+                    role: 'School',
+                    email: document.getElementById('reg-email').value,
+                    password: document.getElementById('reg-password').value,
+                    schoolName: document.getElementById('reg-name').value,
+                    studentCount: document.getElementById('reg-count').value,
+                    lat: document.getElementById('reg-lat').value,
+                    lng: document.getElementById('reg-lng').value,
+                    contact: document.getElementById('reg-contact').value
+                };
+
+                const res = await backend.post('register', data);
+                if (res.status === 'success') {
+                    alert('Registered! Please login.');
+                    showForm('login');
+                } else {
+                    alert(res.message);
+                }
+            });
+
+            // Login
+            document.getElementById('login-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                const res = await Auth.login(email, password);
+                if (res.success) {
+                    window.location.reload();
+                } else {
+                    alert(res.message);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

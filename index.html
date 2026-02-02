@@ -25,17 +25,30 @@
         <div class="container header-container">
             <a href="#" class="logo">
                 <img src="image.png" alt="Miti Bora Farm Africa Logo" class="logo-img">
-
             </a>
             <button class="mobile-menu-toggle" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
             <nav class="nav">
                 <ul class="nav-list">
-                    <li><a href="#hero" class="nav-link active">Home</a></li>
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
                     <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link">Donors & Partners <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="partners.html">Partners Portal</a>
+                            <a href="donors.html">Donors Portal</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link">Education <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="schools.html">School Accounts</a>
+                            <a href="school_fees.html">Get School Fees</a>
+                        </div>
+                    </li>
+                    <li><a href="get_seedling.html" class="nav-link">Get a Seedling</a></li>
                     <li><a href="programs.html" class="nav-link">Our Programs</a></li>
-                    <li><a href="programs.html#impact" class="nav-link">Impact</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                     <li class="nav-spacer">
                         <a href="https://wa.me/254721221147" target="_blank" class="btn-whatsapp">
@@ -143,6 +156,32 @@
                     <div class="flow-icon"><i class="fas fa-truck"></i></div>
                     <h4>Transport Companies</h4>
                     <p>Logistics companies contributing <strong>1 KES per liter</strong> of fuel used.</p>
+                </div>
+            </div>
+
+            <!-- Partners Carousel (Dynamic) -->
+            <div id="partners-carousel-section" style="margin: 4rem 0;">
+                <h3 class="section-title text-center" style="font-size: 1.8rem;">Our Valued Partners</h3>
+                <div class="carousel-container" style="overflow: hidden; padding: 2rem 0; position: relative;">
+                    <div id="partners-track" style="display: flex; gap: 3rem; animation: scroll 20s linear infinite;">
+                        <!-- Partner items injected via JS -->
+                        <div class="partner-item" style="min-width: 150px; text-align: center; opacity: 0.7;">
+                            <img src="https://placehold.co/150x80?text=TotalEnergies"
+                                style="max-width: 100%; height: auto; filter: grayscale(100%);">
+                        </div>
+                        <div class="partner-item" style="min-width: 150px; text-align: center; opacity: 0.7;">
+                            <img src="https://placehold.co/150x80?text=Shell"
+                                style="max-width: 100%; height: auto; filter: grayscale(100%);">
+                        </div>
+                        <div class="partner-item" style="min-width: 150px; text-align: center; opacity: 0.7;">
+                            <img src="https://placehold.co/150x80?text=Rubis"
+                                style="max-width: 100%; height: auto; filter: grayscale(100%);">
+                        </div>
+                        <div class="partner-item" style="min-width: 150px; text-align: center; opacity: 0.7;">
+                            <img src="https://placehold.co/150x80?text=Olaf"
+                                style="max-width: 100%; height: auto; filter: grayscale(100%);">
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -259,6 +298,7 @@
         </div>
     </footer>
 
+    <script src="GithubAdapter.js"></script>
     <script src="script.js"></script>
 </body>
 

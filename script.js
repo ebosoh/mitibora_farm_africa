@@ -135,3 +135,39 @@ document.addEventListener('DOMContentLoaded', () => {
         messageField.value = messageParam;
     }
 });
+
+// Dynamic Partner Carousel
+document.addEventListener('DOMContentLoaded', async () => {
+    const track = document.getElementById('partners-track');
+    // Ensure backend is available (from GithubAdapter.js)
+    if (track && typeof backend !== 'undefined') {
+        try {
+            const res = await backend.get('getPartners');
+            if (res.status === 'success' && res.data && res.data.length > 0) {
+                track.innerHTML = '';
+                // Double items for seamless scrolling
+                const partners = [...res.data, ...res.data];
+                partners.forEach(p => {
+                    const div = document.createElement('div');
+                    div.className = 'partner-item';
+                    div.style.cssText = "min-width: 150px; text-align: center; opacity: 0.7; margin: 0 1rem;";
+
+                    const logo = p.LogoUrl || `https://placehold.co/150x80?text=${encodeURIComponent(p.Name)}`;
+
+                    const img = document.createElement('img');
+                    img.src = logo;
+                    img.alt = p.Name;
+                    img.style.cssText = "max-width: 150px; height: 80px; object-fit: contain; filter: grayscale(100%); transition: all 0.3s;";
+
+                    img.onmouseenter = () => { img.style.filter = 'grayscale(0%)'; img.style.transform = 'scale(1.1)'; };
+                    img.onmouseleave = () => { img.style.filter = 'grayscale(100%)'; img.style.transform = 'scale(1)'; };
+
+                    div.appendChild(img);
+                    track.appendChild(div);
+                });
+            }
+        } catch (e) {
+            console.warn("Partner Carousel: Could not load data.", e);
+        }
+    }
+});

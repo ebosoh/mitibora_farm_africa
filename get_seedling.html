@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get a Seedling | Miti Bora Farm Africa</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <style>
+        .portal-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        #map {
+            height: 500px;
+            width: 100%;
+            border-radius: var(--radius-lg);
+        }
+
+        .form-box {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        @media (max-width: 768px) {
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><img src="image.png" alt="Logo" class="logo-img"></a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link">Donors & Partners <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="partners.html">Partners Portal</a>
+                            <a href="donors.html">Donors Portal</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link">Education <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="schools.html">School Accounts</a>
+                            <a href="school_fees.html">Get School Fees</a>
+                        </div>
+                    </li>
+                    <li><a href="get_seedling.html" class="nav-link active">Get a Seedling</a></li>
+                    <li><a href="programs.html" class="nav-link">Our Programs</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-spacer">
+                        <a href="https://wa.me/254721221147" target="_blank" class="btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">Request Seedlings</h1>
+            <p class="hero-subtitle">Join the movement. Plant trees in your community and track your impact.</p>
+        </div>
+    </div>
+
+    <div class="portal-container">
+
+        <h2 class="section-title text-center">Our Growing Network</h2>
+        <p class="section-desc text-center" style="margin-bottom: 2rem;">See where our seedlings are being planted
+            across the country.</p>
+
+        <div class="grid-layout">
+
+            <!-- Map Side -->
+            <div>
+                <div id="map"></div>
+                <p class="text-center" style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                    Click on the map to set your planting location.
+                </p>
+            </div>
+
+            <!-- Form Side -->
+            <div class="form-box">
+                <h3 style="margin-bottom: 1.5rem; color: var(--color-primary);">Seedling Request Form</h3>
+
+                <form id="seedling-form">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="req-name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Contact Phone</label>
+                        <input type="tel" id="req-phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Number of Trees Requested</label>
+                        <input type="number" id="req-amount" min="10" placeholder="Minimum 10" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Preferred Collection Point</label>
+                        <select id="req-pickup" required>
+                            <option value="">Select a location...</option>
+                            <option value="Machakos">Machakos Center</option>
+                            <option value="Nakuru">Nakuru Depot</option>
+                            <option value="Kiambu">Kiambu Farm</option>
+                        </select>
+                    </div>
+
+                    <h4 style="margin-top: 1.5rem; font-size: 1rem;">Planting Location</h4>
+                    <div class="form-group" style="display: flex; gap: 1rem;">
+                        <input type="text" id="req-lat" placeholder="Lat" readonly required>
+                        <input type="text" id="req-lng" placeholder="Lng" readonly required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Preferred Collection Date</label>
+                        <input type="date" id="req-date" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-accent w-100" style="margin-top: 1rem;">Submit Request</button>
+                    <div id="msg" style="margin-top: 1rem;"></div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="GithubAdapter.js"></script>
+
+    <script>
+        // Init Map
+        const map = L.map('map').setView([-1.2921, 36.8219], 7); // Zoomed out to see Kenya
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+
+        let myMarker;
+
+        // Load existing seedling locations
+        async function loadLocations() {
+            const res = await backend.get('getSeedlingLocations');
+            if (res.status === 'success' && res.data) {
+                res.data.forEach(loc => {
+                    L.circleMarker([loc.Lat, loc.Lng], {
+                        radius: 5,
+                        fillColor: "#2ecc71",
+                        color: "#27ae60",
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: 0.8
+                    }).addTo(map).bindPopup(`<b>${loc.TreesRequested} Trees</b><br>Requested by ${loc.Name}`);
+                });
+            }
+        }
+        loadLocations();
+
+        // Click to set location
+        map.on('click', function (e) {
+            const lat = e.latlng.lat.toFixed(6);
+            const lng = e.latlng.lng.toFixed(6);
+            document.getElementById('req-lat').value = lat;
+            document.getElementById('req-lng').value = lng;
+
+            if (myMarker) map.removeLayer(myMarker);
+            myMarker = L.marker([lat, lng], { draggable: true }).addTo(map);
+            myMarker.bindPopup("My Planting Site").openPopup();
+        });
+
+        // Handle Request
+        document.getElementById('seedling-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = {
+                action: 'requestSeedling',
+                role: 'SeedlingRecipient', // Also registers user implicitly in our logic
+                name: document.getElementById('req-name').value,
+                contact: document.getElementById('req-phone').value,
+                treesRequested: document.getElementById('req-amount').value,
+                collectionPoint: document.getElementById('req-pickup').value,
+                lat: document.getElementById('req-lat').value,
+                lng: document.getElementById('req-lng').value,
+                date: document.getElementById('req-date').value
+            };
+
+            const btn = e.target.querySelector('button');
+            btn.disabled = true;
+            btn.innerText = "Processing...";
+
+            const res = await backend.post('requestSeedling', data);
+            if (res.status === 'success') {
+                document.getElementById('msg').innerHTML = '<span style="color: green;">Request Submitted Successfully! Your ID: ' + res.id + '</span>';
+                e.target.reset();
+                if (myMarker) {
+                    myMarker.closePopup();
+                    myMarker.bindPopup("Request Submitted!").openPopup();
+                }
+            } else {
+                document.getElementById('msg').innerHTML = '<span style="color: red;">Error: ' + res.message + '</span>';
+            }
+            btn.disabled = false;
+            btn.innerText = "Submit Request";
+        });
+    </script>
+</body>
+
+</html>

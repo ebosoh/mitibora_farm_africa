@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get School Fees | Miti Bora Farm Africa</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <style>
+        .portal-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+        }
+
+        .form-box {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: var(--radius-lg);
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><img src="image.png" alt="Logo" class="logo-img"></a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link">Donors & Partners <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="partners.html">Partners Portal</a>
+                            <a href="donors.html">Donors Portal</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link active">Education <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="schools.html">School Accounts</a>
+                            <a href="school_fees.html">Get School Fees</a>
+                        </div>
+                    </li>
+                    <li><a href="get_seedling.html" class="nav-link">Get a Seedling</a></li>
+                    <li><a href="programs.html" class="nav-link">Our Programs</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-spacer">
+                        <a href="https://wa.me/254721221147" target="_blank" class="btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">School Fees Application</h1>
+            <p class="hero-subtitle">Turn your tree planting efforts into education support.</p>
+        </div>
+    </div>
+
+    <div class="portal-container">
+
+        <div class="form-box">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Application Form</h2>
+
+            <!-- Using basic HTML form for now, submitted via Adapter -->
+            <form id="fees-form">
+                <h3
+                    style="margin-bottom: 1rem; color: var(--color-primary); border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">
+                    Student Information</h3>
+                <div class="form-group"><label>Student Name</label><input type="text" id="student-name" required></div>
+                <div class="form-group"><label>Age</label><input type="number" id="student-age" required></div>
+
+                <h3
+                    style="margin: 2rem 0 1rem; color: var(--color-primary); border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">
+                    School Details</h3>
+                <div class="form-group"><label>School Name</label><input type="text" id="school-name" required></div>
+                <div class="form-group"><label>Admission Number</label><input type="text" id="adm-no" required></div>
+                <div class="form-group"><label>Fees Amount Requested (KES)</label><input type="number" id="fees-amount"
+                        required></div>
+
+                <h3
+                    style="margin: 2rem 0 1rem; color: var(--color-primary); border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">
+                    Guardian Information</h3>
+                <div class="form-group"><label>Guardian Name</label><input type="text" id="guardian-name" required>
+                </div>
+                <div class="form-group"><label>Phone Number</label><input type="tel" id="guardian-phone" required></div>
+
+                <h3
+                    style="margin: 2rem 0 1rem; color: var(--color-primary); border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">
+                    Home Location</h3>
+                <p style="font-size: 0.9rem;">Please pin your home location so we can verify your tree planting
+                    activities.</p>
+                <div id="map"></div>
+                <div class="form-group" style="display: flex; gap: 1rem;">
+                    <input type="text" id="loc-lat" placeholder="Latitude" readonly required>
+                    <input type="text" id="loc-lng" placeholder="Longitude" readonly required>
+                </div>
+
+                <div class="form-group" style="margin-top: 2rem;">
+                    <label style="display: flex; align-items: start; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" required>
+                        <span style="font-size: 0.9rem;">I agree to the <a href="#"
+                                style="color: var(--color-accent);">Terms and Conditions</a>. I understand that this
+                            loan is repaid through the production and care of tree seedlings.</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100" style="margin-top: 1rem;">Submit
+                    Application</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="GithubAdapter.js"></script>
+
+    <script>
+        // Init Map
+        const map = L.map('map').setView([-1.2921, 36.8219], 10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+
+        let marker;
+        map.on('click', function (e) {
+            const lat = e.latlng.lat.toFixed(6);
+            const lng = e.latlng.lng.toFixed(6);
+            document.getElementById('loc-lat').value = lat;
+            document.getElementById('loc-lng').value = lng;
+            if (marker) map.removeLayer(marker);
+            marker = L.marker([lat, lng]).addTo(map);
+        });
+
+        // Form Submit
+        // Note: For "Get School Fees", we treat it as a Seedling Request but specialized? 
+        // Or should we create a new 'FeesRequest' type?
+        // The instructions say "Seedling Recipients" also create accounts.
+        // Let's treat valid submission as registration + request.
+
+        document.getElementById('fees-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            alert("Application System is currently in Demo Mode. Your details would be submitted to the backend here.");
+            // Implementation: backend.post('register', { role: 'Student', ... })
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donors Portal | Miti Bora Farm Africa</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        .portal-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+        }
+
+        .auth-box {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .donation-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .donation-card {
+            border: 2px solid #eee;
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .donation-card:hover,
+        .donation-card.selected {
+            border-color: var(--color-accent);
+            background: #f0fff4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><img src="image.png" alt="Logo" class="logo-img"></a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link active">Donors & Partners <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="partners.html">Partners Portal</a>
+                            <a href="donors.html">Donors Portal</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link">Education <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="schools.html">School Accounts</a>
+                            <a href="school_fees.html">Get School Fees</a>
+                        </div>
+                    </li>
+                    <li><a href="get_seedling.html" class="nav-link">Get a Seedling</a></li>
+                    <li><a href="programs.html" class="nav-link">Our Programs</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-spacer">
+                        <a href="https://wa.me/254721221147" target="_blank" class="btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">Support Our Mission</h1>
+            <p class="hero-subtitle">Your contribution directly funds seedling production and education loans.</p>
+        </div>
+    </div>
+
+    <div class="portal-container">
+
+        <div class="auth-box">
+            <h2 class="text-center" style="margin-bottom: 2rem;">Make a Donation</h2>
+
+            <form id="donation-form">
+                <label>Select Amount (KES)</label>
+                <div class="donation-options">
+                    <div class="donation-card" onclick="selectAmount(500)">
+                        <h3>500</h3>
+                        <p>50 Seedlings</p>
+                    </div>
+                    <div class="donation-card" onclick="selectAmount(1000)">
+                        <h3>1,000</h3>
+                        <p>100 Seedlings</p>
+                    </div>
+                    <div class="donation-card" onclick="selectAmount(5000)">
+                        <h3>5,000</h3>
+                        <p>School Fees Support</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Custom Amount</label>
+                    <input type="number" id="custom-amount" placeholder="Enter amount">
+                </div>
+
+                <h4 style="margin-top: 2rem;">Payment Method</h4>
+                <div class="form-group">
+                    <select id="payment-method">
+                        <option value="Mpesa">M-Pesa</option>
+                        <option value="Bank">Bank Transfer</option>
+                        <option value="Card">Credit Card</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Donor Name (Optional)</label>
+                    <input type="text" id="donor-name" placeholder="Leave blank to remain anonymous">
+                </div>
+
+                <div class="form-group">
+                    <label>Message (Optional)</label>
+                    <textarea id="donor-msg" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Donate Now</button>
+            </form>
+
+            <div id="payment-instructions"
+                style="display:none; margin-top: 2rem; padding: 1rem; background: #f9f9f9; border-radius: 8px;">
+                <h4>Payment Instructions</h4>
+                <p><b>Paybill:</b> 123456</p>
+                <p><b>Account:</b> Your Name</p>
+                <p><i>Note: In a real integration, this would redirect to a Payment Gateway.</i></p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="GithubAdapter.js"></script>
+    <script>
+        function selectAmount(val) {
+            document.getElementById('custom-amount').value = val;
+            document.querySelectorAll('.donation-card').forEach(c => c.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+        }
+
+        document.getElementById('donation-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const amount = document.getElementById('custom-amount').value;
+            if (!amount) { alert("Please enter an amount"); return; }
+
+            document.getElementById('payment-instructions').style.display = 'block';
+
+            const data = {
+                action: 'donate',
+                amount: amount,
+                paymentMethod: document.getElementById('payment-method').value,
+                donorId: document.getElementById('donor-name').value || "Anonymous",
+                message: document.getElementById('donor-msg').value
+            };
+
+            // In background, record intent
+            await backend.post('donate', data);
+            alert("Thank you! Please proceed with payment.");
+        });
+    </script>
+</body>
+
+</html>

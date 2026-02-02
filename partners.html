@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partners Portal | Miti Bora Farm Africa</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js for Impact -->
+
+    <style>
+        .portal-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+        }
+
+        .portal-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+        }
+
+        .portal-sidebar {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .portal-main {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .dashboard-stat {
+            background: var(--color-light-gray);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .dashboard-stat h3 {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Auth Forms */
+        .auth-form {
+            display: none;
+            /* Hidden by default */
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        #dashboard-view {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header (Will be updated globally later, using basic for now) -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="image.png" alt="Miti Bora Farm Africa" class="logo-img">
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link active">Donors & Partners <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="partners.html">Partners Portal</a>
+                            <a href="donors.html">Donors Portal</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link">Education <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="schools.html">School Accounts</a>
+                            <a href="school_fees.html">Get School Fees</a>
+                        </div>
+                    </li>
+                    <li><a href="get_seedling.html" class="nav-link">Get a Seedling</a></li>
+                    <li><a href="programs.html" class="nav-link">Our Programs</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-spacer">
+                        <a href="https://wa.me/254721221147" target="_blank" class="btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-hero" style="min-height: 40vh;">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">Partners Portal</h1>
+            <p class="hero-subtitle">Manage your contributions, track fuel levy, and see your carbon impact in
+                real-time.</p>
+        </div>
+    </div>
+
+    <div class="portal-container">
+
+        <!-- LOGIN / REGISTER SECTION -->
+        <div id="auth-section"
+            style="max-width: 500px; margin: 0 auto; background: white; padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">
+            <div class="tabs" style="display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #eee;">
+                <button class="btn btn-outline" onclick="showAuth('login')" id="tab-login">Login</button>
+                <button class="btn btn-outline" onclick="showAuth('register')" id="tab-register">Register</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form active">
+                <h3>Partner Login</h3>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+            </form>
+
+            <!-- Register Form -->
+            <form id="register-form" class="auth-form">
+                <h3>Partner Registration</h3>
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" id="reg-company" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="reg-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="reg-password" required>
+                </div>
+                <div class="form-group">
+                    <label>Core Business</label>
+                    <select id="reg-type">
+                        <option value="Energy">Energy</option>
+                        <option value="Transport">Transport/Logistics</option>
+                        <option value="Agribusiness">Agribusiness</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Market</label>
+                    <select id="reg-market">
+                        <option value="Kenya">Kenya</option>
+                        <option value="East Africa">East Africa</option>
+                        <option value="Africa">Africa</option>
+                        <option value="Global">Global</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Logo URL (Optional)</label>
+                    <input type="url" id="reg-logo" placeholder="https://...">
+                </div>
+                <button type="submit" class="btn btn-secondary" style="width: 100%;">Create Account</button>
+            </form>
+        </div>
+
+        <!-- DASHBOARD VIEW (Hidden until logged in) -->
+        <div id="dashboard-view" class="portal-grid">
+
+            <div class="portal-sidebar">
+                <div class="profile-header" style="text-align: center; margin-bottom: 2rem;">
+                    <img id="dash-logo" src="" alt="Company Logo"
+                        style="width: 100px; height: 100px; object-fit: contain; margin-bottom: 1rem;">
+                    <h3 id="dash-name">Company Name</h3>
+                    <span class="badge"
+                        style="background: var(--color-accent); color: white; padding: 0.2rem 0.5rem; border-radius: 4px;">Partner</span>
+                </div>
+
+                <nav class="dash-nav">
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 1rem;"><a href="#" class="btn btn-outline"
+                                style="width: 100%; text-align: left;"><i class="fas fa-chart-line"></i> Overview</a>
+                        </li>
+                        <li style="margin-bottom: 1rem;"><a href="#" class="btn btn-outline"
+                                style="width: 100%; text-align: left;"><i class="fas fa-file-contract"></i> MoU &
+                                Documents</a></li>
+                        <li><button onclick="Auth.logout()" class="btn btn-primary" style="width: 100%;"><i
+                                    class="fas fa-sign-out-alt"></i> Logout</button></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="portal-main">
+                <h2>Impact Overview</h2>
+                <div class="stats-grid"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                    <div class="dashboard-stat">
+                        <h3 id="stat-fuel">0 L</h3>
+                        <p>Total Fuel Declared</p>
+                    </div>
+                    <div class="dashboard-stat">
+                        <h3 id="stat-trees">0</h3>
+                        <p>Trees Funded</p>
+                    </div>
+                    <div class="dashboard-stat">
+                        <h3 id="stat-carbon">0 t</h3>
+                        <p>Carbon Points (tCO2e)</p>
+                    </div>
+                </div>
+
+                <div class="fuel-entry" style="background: #f9f9f9; padding: 2rem; border-radius: var(--radius-md);">
+                    <h3 style="margin-bottom: 1rem;">Declare Fuel Consumption</h3>
+                    <p>Enter your monthly fuel accumulation to calculate your levy contribution (1 KES/Liter).</p>
+                    <form id="fuel-form" style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <input type="number" id="fuel-liters" placeholder="Liters" style="padding: 10px; flex: 1;"
+                            required>
+                        <button type="submit" class="btn btn-accent">Submit Entry</button>
+                    </form>
+                    <div id="fuel-msg" style="margin-top: 1rem;"></div>
+                </div>
+
+                <div class="chart-container" style="margin-top: 2rem;">
+                    <canvas id="impactChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="GithubAdapter.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Auth UI Toggle
+        function showAuth(type) {
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+            document.getElementById(`${type}-form`).classList.add('active');
+
+            // Toggle Tab Styles (Basic)
+            document.getElementById('tab-login').style.background = type === 'login' ? '#eee' : 'white';
+            document.getElementById('tab-register').style.background = type === 'register' ? '#eee' : 'white';
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = Auth.getUser();
+            if (user && user.role === 'Partner') {
+                showDashboard(user);
+            } else if (user && user.role !== 'Partner') {
+                alert("Please login with a Partner account.");
+                Auth.logout();
+            } else {
+                document.getElementById('auth-section').style.display = 'block';
+                document.getElementById('dashboard-view').style.display = 'none';
+            }
+
+            // Register Handler
+            document.getElementById('register-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const data = {
+                    action: 'register',
+                    role: 'Partner',
+                    email: document.getElementById('reg-email').value,
+                    password: document.getElementById('reg-password').value,
+                    companyName: document.getElementById('reg-company').value,
+                    businessType: document.getElementById('reg-type').value,
+                    market: document.getElementById('reg-market').value,
+                    logoUrl: document.getElementById('reg-logo').value
+                };
+
+                const res = await backend.post('register', data);
+                if (res.status === 'success') {
+                    alert('Registration successful! Please login.');
+                    showAuth('login');
+                } else {
+                    alert('Error: ' + res.message);
+                }
+            });
+
+            // Login Handler
+            document.getElementById('login-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+
+                const res = await Auth.login(email, password);
+                if (res.success) {
+                    showDashboard(Auth.getUser());
+                } else {
+                    alert('Login failed: ' + res.message);
+                }
+            });
+
+            // Fuel Update Handler
+            document.getElementById('fuel-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const user = Auth.getUser();
+                const liters = document.getElementById('fuel-liters').value;
+
+                const res = await backend.post('updateFuel', {
+                    partnerId: user.relatedId, // This ID links to Helpers sheet
+                    userId: user.userId, // Links to Users sheet
+                    liters: liters
+                });
+
+                if (res.status === 'success') {
+                    document.getElementById('fuel-msg').innerHTML = `<span style="color: green;">Successfully added ${liters}L. Contribution: ${liters} KES.</span>`;
+                    // Update stats locally for immediate feedback (or fetch fresh)
+                    const current = parseFloat(document.getElementById('stat-fuel').innerText);
+                    document.getElementById('stat-fuel').innerText = (current + parseFloat(liters)) + " L";
+                    // Just a visual update, real data assumes fetch on reload or separate 'getDetails' call
+                } else {
+                    document.getElementById('fuel-msg').innerHTML = `<span style="color: red;">Error: ${res.message}</span>`;
+                }
+            });
+        });
+
+        function showDashboard(user) {
+            document.getElementById('auth-section').style.display = 'none';
+            document.getElementById('dashboard-view').style.display = 'grid';
+
+            // Set User Info (In real app, fetch full profile details here using relatedId)
+            document.getElementById('dash-name').innerText = user.email; // Placeholder until we fetch name
+
+            // Initialize Chart
+            const ctx = document.getElementById('impactChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Trees Funded',
+                        data: [12, 19, 3, 5, 2, 3], // Placeholder Data
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

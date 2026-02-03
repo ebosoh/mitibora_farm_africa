@@ -684,6 +684,14 @@ input[type="checkbox"] {
         padding: 0;
         backdrop-filter: none;
     }
+
+    /* Fix for Hero Overlap on Mobile */
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding-top: 120px;
+        padding-bottom: 4rem;
+    }
 }
 
 /* About Page Layout */

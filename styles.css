@@ -704,8 +704,10 @@ input[type="checkbox"] {
     .page-hero {
         height: auto;
         min-height: 300px;
-        padding-top: 140px;
+        padding-top: 180px;
         padding-bottom: 4rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
 }
 

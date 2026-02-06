@@ -155,7 +155,7 @@ ul {
 
 .btn-lime,
 .btn-accent {
-    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
+    background: #BED701;
     color: white;
 }
 
@@ -372,6 +372,7 @@ ul {
     letter-spacing: -0.04em;
     text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     line-height: 1.1;
+    color: #BED701;
 }
 
 .hero-subtitle {
@@ -382,6 +383,13 @@ ul {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.hero-cta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 /* Stats in Hero */
@@ -401,7 +409,7 @@ ul {
     font-size: 3rem;
     font-weight: 800;
     display: block;
-    color: var(--color-accent);
+    color: #BED701;
     line-height: 1;
     margin-bottom: 0.5rem;
 }

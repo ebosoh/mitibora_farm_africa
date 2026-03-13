@@ -51,7 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const observer = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting && !started) {
                 stats.forEach(stat => {
-                    const target = parseInt(stat.getAttribute('data-target'));
+                    const targetStr = stat.getAttribute('data-target');
+                    const target = parseInt(targetStr);
+                    const suffix = targetStr.replace(/[0-9,]/g, '');
                     const duration = 2000; // 2 seconds
                     const refreshRate = 20;
                     const steps = duration / refreshRate;
@@ -61,10 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     const timer = setInterval(() => {
                         current += increment;
                         if (current >= target) {
-                            stat.innerText = target.toLocaleString(); // Add commas
+                            stat.innerText = target.toLocaleString() + suffix; 
                             clearInterval(timer);
                         } else {
-                            stat.innerText = Math.ceil(current).toLocaleString();
+                            stat.innerText = Math.ceil(current).toLocaleString() + suffix;
                         }
                     }, refreshRate);
                 });

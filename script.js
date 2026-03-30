@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const timer = setInterval(() => {
                         current += increment;
                         if (current >= target) {
-                            stat.innerText = target.toLocaleString() + suffix; 
+                            stat.innerText = target.toLocaleString() + suffix;
                             clearInterval(timer);
                         } else {
                             stat.innerText = Math.ceil(current).toLocaleString() + suffix;
@@ -143,12 +143,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const track = document.getElementById('partners-track');
 
     // Local static partners (User provided)
-    const localPartners = [
-        { Name: "Partner 1", LogoUrl: "carousel1.webp" },
-        { Name: "Partner 2", LogoUrl: "carousel2.png" },
-        { Name: "Partner 3", LogoUrl: "carousel3.png" },
-        { Name: "Partner 4", LogoUrl: "carousel4.svg" }
-    ];
+    const localPartners = []; // Placeholders removed. Real ones will be added as we sign up partners.
 
     function renderCarousel(partners) {
         if (!track || partners.length === 0) return;
